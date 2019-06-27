@@ -1,4 +1,5 @@
 ﻿using Foundation;
+using Intents;
 using UIKit;
 
 namespace VoiceCameraControl
@@ -18,6 +19,24 @@ namespace VoiceCameraControl
 
     public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
     {
+      // Request access to Siri
+
+      INPreferences.RequestSiriAuthorization((INSiriAuthorizationStatus status) =>
+      {
+        // Respond to returned status
+        switch (status)
+        {
+          case INSiriAuthorizationStatus.Authorized:
+            break;
+          case INSiriAuthorizationStatus.Denied:
+            break;
+          case INSiriAuthorizationStatus.NotDetermined:
+            break;
+          case INSiriAuthorizationStatus.Restricted:
+            break;
+        }
+      });
+
       // Override point for customization after application launch.
       // If not required for your application you can safely delete this method
 
